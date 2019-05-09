@@ -2,15 +2,10 @@
 import pygame, os, time, random
 from pygame.locals import *
 
-#Local Imports
-from LoseScreen import *
-
-class Popup:
-	def __init__(self, game, content, correct):
-		self.answered = False
-		self.correct = correct
+class InstructionScreen:
+	def __init__(self, game):
 		self.game = game
-		self.content = content
+		self.quit = False
 
 	def run(self):
 
@@ -25,11 +20,11 @@ class Popup:
 		yPos1 = self.game.height/2 - height/2 - 3
 		yPos2 = self.game.height/2 + height/2 + 3
 
-		content = self.game.font.render(self.content, False, (255, 255, 255))
-		label1 = self.game.font.render("NO", False, (255, 255, 255))
-		label2 = self.game.font.render("YES", False, (255, 255, 255))
+		content = self.game.font.render("Instructions", False, (255, 255, 255))
+		label1 = self.game.font.render("QUIT", False, (255, 255, 255))
+		label2 = self.game.font.render("PLAY", False, (255, 255, 255))
 
-		while not self.answered:
+		while not self.quit:
 
 			clock.tick(30)
 
@@ -38,17 +33,17 @@ class Popup:
 			#display text and answer buttons
 			if mouse_in_box1:
 				pygame.draw.rect(self.game.screen, (255, 0, 0), (xPos, yPos1, width, height), 0)
-				self.game.screen.blit(label1, (xPos+width/2-15, yPos1+height/2-10))
+				self.game.screen.blit(label1, (xPos+width/2-25, yPos1+height/2-10))
 			else:
 				pygame.draw.rect(self.game.screen, (100, 100, 100), (xPos, yPos1, width, height), 0)
-				self.game.screen.blit(label1, (xPos+width/2-15, yPos1+height/2-10))
+				self.game.screen.blit(label1, (xPos+width/2-25, yPos1+height/2-10))
 
 			if mouse_in_box2:
 				pygame.draw.rect(self.game.screen, (0, 255, 0), (xPos, yPos2, width, height), 0)
-				self.game.screen.blit(label2, (xPos+width/2-20, yPos2+height/2-10))
+				self.game.screen.blit(label2, (xPos+width/2-25, yPos2+height/2-10))
 			else:
 				pygame.draw.rect(self.game.screen, (100, 100, 100), (xPos, yPos2, width, height), 0)
-				self.game.screen.blit(label2, (xPos+width/2-20, yPos2+height/2-10))
+				self.game.screen.blit(label2, (xPos+width/2-25, yPos2+height/2-10))
 
 			self.game.screen.blit(content, (10, 10))
 
@@ -62,7 +57,7 @@ class Popup:
 					mouse_in_box1 = True
 				else:
 					mouse_in_box1 = False
-
+					
 				if self.mouse_over_box(pygame.mouse.get_pos(), xPos, yPos2, width, height):
 					mouse_in_box2 = True
 				else:
@@ -71,23 +66,16 @@ class Popup:
 				if pygame.mouse.get_pressed()[0]:
 					if mouse_in_box1:
 						self.answered = True
-						if self.correct == 0:
-							print("correct")
-						else:
-							LoseScreen(self.game, "Oof sorry Theseus, wrong answer :(").run()
-							print("incorrect")
+						print("quit")
+						pygame.quit()
+						quit()
 					elif mouse_in_box2:
 						self.answered = True
-						if self.correct == 1:
-							print("said yes")
-						else:
-							LoseScreen(self.game, "Oof sorry Theseus, wrong answer :(").run()
-							print("incorrect")
+						print("play")
+						self.game.run()
 
 			pygame.display.update()
 
 
-
 	def mouse_over_box(self, mouse_pos, xPos, yPos, width, height):
 		return mouse_pos[0] > xPos and mouse_pos[0] < xPos+width and mouse_pos[1] > yPos and mouse_pos[1] < yPos+height
-

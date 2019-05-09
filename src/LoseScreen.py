@@ -3,8 +3,9 @@ import pygame, os, time, random
 from pygame.locals import *
 
 class LoseScreen:
-	def __init__(self, game):
+	def __init__(self, game, content):
 		self.game = game
+		self.content = content
 		self.quit = False
 
 	def run(self):
@@ -20,7 +21,7 @@ class LoseScreen:
 		yPos1 = self.game.height/2 - height/2 - 3
 		yPos2 = self.game.height/2 + height/2 + 3
 
-		content = self.game.font.render("Oof. Sorry Theseus. You touched the edge. Play again?", False, (255, 255, 255))
+		content = self.game.font.render(self.content, False, (255, 255, 255))
 		label1 = self.game.font.render("QUIT", False, (255, 255, 255))
 		label2 = self.game.font.render("PLAY", False, (255, 255, 255))
 

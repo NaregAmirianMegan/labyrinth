@@ -91,7 +91,7 @@ class Game:
                 player.gravity()
 
                 if player.did_collide_with_game_map(tile_map):
-                    self.lost()
+                    self.lost("Oof, sorry Theseus, you hit the wall :(")
                     break
 
                 enemies.update()
@@ -112,7 +112,7 @@ class Game:
 
             else:
 
-                Popup(self, questions[random.randint(0, len(questions)-1)]).run()
+                Popup(self, questions[random.randint(0, len(questions)-1)], 0).run()
 
                 self.paused = False
                 self.screen.fill((255, 255, 255))
@@ -124,12 +124,12 @@ class Game:
 
 
     def won(self, elapsed):
-        print("Congrats you won!", "It took you:", int(elapsed), "second(s)!")
+        print("Won")
         WinScreen(self, int(elapsed)).run()
 
-    def lost(self):
-        print("Sorry, ya touched the edge :(")
-        LoseScreen(self).run()
+    def lost(self, content):
+        print("Lost")
+        LoseScreen(self, content).run()
 
 
 

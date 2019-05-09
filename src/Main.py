@@ -2,6 +2,7 @@ import pygame, os
 from pygame.locals import *
 
 from Game import Game
+from InstructionScreen import InstructionScreen
 
 print("Game loading...")
 
@@ -38,4 +39,4 @@ game_map = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 			]
 
 game = Game(screen, WINDOW_WIDTH, WINDOW_HEIGHT, game_map, myFont)
-game.run()
+InstructionScreen(game).run()
