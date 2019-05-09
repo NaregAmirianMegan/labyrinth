@@ -14,6 +14,7 @@ os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (x,y)
 pygame.init()
 #setup text font
 pygame.font.init()
+myFont = pygame.font.SysFont('Comic Sans MS', 29)
 
 #set game constants
 #set window size
@@ -36,5 +37,5 @@ game_map = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 			[0, 0, 0, 0, 0, 0, 0, 0, 1, 0]
 			]
 
-game = Game(screen, WINDOW_WIDTH, WINDOW_HEIGHT, game_map)
+game = Game(screen, WINDOW_WIDTH, WINDOW_HEIGHT, game_map, myFont)
 game.run()
