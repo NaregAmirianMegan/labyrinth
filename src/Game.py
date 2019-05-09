@@ -11,8 +11,11 @@ from pygame.locals import *
 #Local Imports
 from Components import *
 from Popup import *
+from WinScreen import *
+from LoseScreen import *
 
-questions = ["", "", "", ""]
+questions = ["blah blah blah \n blah blah blajdkf alkdflkdjf \n alkdjf blah blah blah blah blah blajdkf alkdflkdjf alkdjf", "blah blah blah \n blah blah blajdkf alkdflkdjf \n alkdjf blah blah blah blah blah blajdkf alkdflkdjf alkdjf", 
+            "blah blah blah \n blah blah blajdkf alkdflkdjf \n alkdjf blah blah blah blah blah blajdkf alkdflkdjf alkdjf", "blah blah blah blah \n blah blajdkf alkdflkdjf alkdjf \n blah blah blah blah blah blajdkf alkdflkdjf alkdjf"]
 
 global riddles
 
@@ -122,9 +125,11 @@ class Game:
 
     def won(self, elapsed):
         print("Congrats you won!", "It took you:", int(elapsed), "second(s)!")
+        WinScreen(self, int(elapsed)).run()
 
     def lost(self):
         print("Sorry, ya touched the edge :(")
+        LoseScreen(self).run()
 
 
 
