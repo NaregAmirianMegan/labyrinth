@@ -73,6 +73,7 @@ class LoseScreen:
 					elif mouse_in_box2:
 						self.answered = True
 						print("play again")
+						self.game.paused = False
 						self.game.run()
 
 			pygame.display.update()

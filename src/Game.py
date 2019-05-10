@@ -14,8 +14,13 @@ from Popup import *
 from WinScreen import *
 from LoseScreen import *
 
-questions = ["blah blah blah \n blah blah blajdkf alkdflkdjf \n alkdjf blah blah blah blah blah blajdkf alkdflkdjf alkdjf", "blah blah blah \n blah blah blajdkf alkdflkdjf \n alkdjf blah blah blah blah blah blajdkf alkdflkdjf alkdjf", 
-            "blah blah blah \n blah blah blajdkf alkdflkdjf \n alkdjf blah blah blah blah blah blajdkf alkdflkdjf alkdjf", "blah blah blah blah \n blah blajdkf alkdflkdjf alkdjf \n blah blah blah blah blah blajdkf alkdflkdjf alkdjf"]
+questions = ["",
+             "", 
+             "", 
+             ""]
+
+#0 for no 1 for yes
+answers = []
 
 global riddles
 
@@ -111,8 +116,8 @@ class Game:
                 pygame.display.update()
 
             else:
-
-                Popup(self, questions[random.randint(0, len(questions)-1)], 0).run()
+                index = random.randint(0, len(questions)-1)
+                Popup(self, questions[index], answers[index]).run()
 
                 self.paused = False
                 self.screen.fill((255, 255, 255))

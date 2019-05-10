@@ -25,7 +25,7 @@ class Popup:
 		yPos1 = self.game.height/2 - height/2 - 3
 		yPos2 = self.game.height/2 + height/2 + 3
 
-		content = self.game.font.render(self.content, False, (255, 255, 255))
+		render_objects = self.create_render_objects(54)
 		label1 = self.game.font.render("NO", False, (255, 255, 255))
 		label2 = self.game.font.render("YES", False, (255, 255, 255))
 
@@ -50,7 +50,8 @@ class Popup:
 				pygame.draw.rect(self.game.screen, (100, 100, 100), (xPos, yPos2, width, height), 0)
 				self.game.screen.blit(label2, (xPos+width/2-20, yPos2+height/2-10))
 
-			self.game.screen.blit(content, (10, 10))
+			for x in range(1, len(render_objects)):
+				self.game.screen.blit(render_objects[x-1], (10, 20*x))
 
 			#check for mouse over and button click
 			for event in pygame.event.get():
@@ -90,4 +91,26 @@ class Popup:
 
 	def mouse_over_box(self, mouse_pos, xPos, yPos, width, height):
 		return mouse_pos[0] > xPos and mouse_pos[0] < xPos+width and mouse_pos[1] > yPos and mouse_pos[1] < yPos+height
+
+	def create_render_objects(self, char_limit=20):
+		sentences = []
+		render_objects = []
+		words = self.content.split(" ")
+		while words:
+			curr_sentence = ""
+			char_count = 0
+			for word in words[:]:
+				char_count += len(word) + 1
+				if char_count <= char_limit:
+					curr_sentence += word + " "
+					words.remove(word)
+					if not words:
+						sentences.append(curr_sentence)
+						break
+				else:
+					sentences.append(curr_sentence)
+					break
+		for sentence in sentences:
+			render_objects.append(self.game.font.render(sentence, False, (255, 255, 255)))
+		return render_objects
 

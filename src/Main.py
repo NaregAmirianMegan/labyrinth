@@ -27,16 +27,18 @@ screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 pygame.display.set_caption('Labyrinth')
 
 game_map = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-			[0, 1, 1, 1, 1, 1, 0, 0, 0, 0],
-			[0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
-			[0, 0, 0, 0, 0, 1, 0, 1, 0, 0],
-			[0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
-			[0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
-			[0, 1, 1, 0, 0, 0, 0, 1, 0, 0],
-			[0, 0, 1, 1, 1, 0, 0, 1, 0, 0],
-			[0, 0, 0, 0, 1, 1, 0, 1, 1, 0],
+			[0, 1, 0, 0, 0, 1, 1, 1, 0, 0],
+			[0, 1, 0, 0, 0, 1, 0, 1, 0, 0],
+			[0, 1, 0, 1, 1, 1, 0, 1, 0, 0],
+			[0, 1, 0, 1, 0, 0, 0, 1, 0, 0],
+			[0, 1, 0, 1, 0, 0, 0, 1, 0, 0],
+			[0, 1, 0, 1, 0, 0, 0, 1, 0, 0],
+			[0, 1, 1, 1, 0, 0, 0, 1, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0, 1, 1, 0],
 			[0, 0, 0, 0, 0, 0, 0, 0, 1, 0]
 			]
 
+instructions = "Theseus. Your goal is to make it through the Labyrinth! watch out for the red dots flying over the Labyrinth. They will fly down and ask you to make a choice. Choose wrong and you will not survive. Use the arrow keys to move and beware of gravity pulling you down. DON'T touch the edge of the maze, that is also fatal. Good Luck Theseus! Aegeus awaits!"
+
 game = Game(screen, WINDOW_WIDTH, WINDOW_HEIGHT, game_map, myFont)
-InstructionScreen(game).run()
+InstructionScreen(game, instructions).run()

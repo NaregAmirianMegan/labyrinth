@@ -21,7 +21,7 @@ class WinScreen:
 		yPos1 = self.game.height/2 - height/2 - 3
 		yPos2 = self.game.height/2 + height/2 + 3
 
-		content = self.game.font.render("Congrats you won! It took you " + str(self.elapsed) + " second(s)!", False, (255, 255, 255))
+		content = self.game.font.render("Congrats you made it! It took you " + str(self.elapsed) + " second(s)!", False, (255, 255, 255))
 		label1 = self.game.font.render("QUIT", False, (255, 255, 255))
 		label2 = self.game.font.render("PLAY", False, (255, 255, 255))
 
