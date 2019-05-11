@@ -50,8 +50,8 @@ class Popup:
 				pygame.draw.rect(self.game.screen, (100, 100, 100), (xPos, yPos2, width, height), 0)
 				self.game.screen.blit(label2, (xPos+width/2-20, yPos2+height/2-10))
 
-			for x in range(1, len(render_objects)):
-				self.game.screen.blit(render_objects[x-1], (10, 20*x))
+			for x in range(len(render_objects)):
+				self.game.screen.blit(render_objects[x], (10, 20*(x+1)))
 
 			#check for mouse over and button click
 			for event in pygame.event.get():
@@ -110,6 +110,7 @@ class Popup:
 				else:
 					sentences.append(curr_sentence)
 					break
+		print(sentences)
 		for sentence in sentences:
 			render_objects.append(self.game.font.render(sentence, False, (255, 255, 255)))
 		return render_objects

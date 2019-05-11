@@ -14,13 +14,18 @@ from Popup import *
 from WinScreen import *
 from LoseScreen import *
 
-questions = ["",
-             "", 
-             "", 
-             ""]
+questions = ["Is the answer to the riddle of the Sphinx in Oedipus the King mankind?",
+             "Is it possible to get exactly 4 gallons of water in a 5 gallon jug using only 5 gallon and 3 gallon jugs?", 
+             "Is the remainder of dividing 73 by 4, 1?", 
+             "Is the probability you roll a 3 with a six sided die increased by 3 times if you roll the die three times?",
+             "Is the elephant the largest mammal on the planet?",
+             "If you pass the person in second place in a race, are you in first place now?",
+             "February during a leap year is the only month containing 28 days.",
+             "Dividing 50 by one half gets you 100.",
+             "The plural of octopus is octopuses."]
 
 #0 for no 1 for yes
-answers = []
+answers = [1, 1, 1, 0, 0, 0, 0, 1, 1]
 
 global riddles
 
@@ -96,13 +101,12 @@ class Game:
                 player.gravity()
 
                 if player.did_collide_with_game_map(tile_map):
-                    self.lost("Oof, sorry Theseus, you hit the wall :(")
+                    self.lost("Oof, sorry Theseus, you hit the wall :( Play Again!")
                     break
 
                 enemies.update()
                 if player.did_hit_enemies(enemies):
                     self.paused = True
-                    print(questions[random.randint(0, len(questions)-1)])
 
                 #RENDER
 
